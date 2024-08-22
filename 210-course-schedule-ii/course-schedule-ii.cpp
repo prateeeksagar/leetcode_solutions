@@ -6,17 +6,13 @@ public:
 
         // creating adjaceny list
         vector<int> adj[numCourses]; // O(V+E)
+        vector<int> indegrees(numCourses, 0); // O(numCourses)
+        
         for(int i = 0; i < prerequisites.size(); i++) {
             int u = prerequisites[i][0];
             int v = prerequisites[i][1];
             adj[v].push_back(u);
-        }
-
-        vector<int> indegrees(numCourses, 0); // O(numCourses)
-        for(int i = 0; i < numCourses; i++) {
-            for(auto &it: adj[i]) {
-                indegrees[it]++;
-            }
+            indegrees[u]++;
         }
 
         queue<int> q; //O(numCourses)
