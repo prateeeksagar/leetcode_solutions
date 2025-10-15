@@ -6,8 +6,18 @@ public:
         vector<vector<string>> result;
 
         for(auto &s: strs) {
-            string temp = s;
-            sort(temp.begin(), temp.end());
+
+            int freq[26] = {0};            
+            for(auto &ch: s) {
+                freq[ch - 'a']++;
+            }
+
+            string temp = "";
+            for(int i = 0; i < 26; i++) {
+                if(freq[i] > 0) {
+                temp += string(freq[i], i + 'a');
+                }
+            }
 
             mpp[temp].push_back(s);
         }
